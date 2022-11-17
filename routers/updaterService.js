@@ -138,7 +138,7 @@ router.get('/operations', cors(corsOption), async (req, res) => {
 
     const anagrafiche = data.data;
 
-    console.log(anagrafiche);
+    console.log(data);
     res.send(JSON.stringify(anagrafiche));
 
     const [errorLogout, logout] = await waitFor(logoutSession(tokenFm));
