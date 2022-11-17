@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
 
 app.use(router)
 
-app.listen(26799, '127.0.0.1', () => {
+app.listen(26799, '0.0.0.0', () => {
     console.log("Simple API Gateway run on localhost:26799");
 });
