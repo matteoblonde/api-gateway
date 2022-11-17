@@ -120,6 +120,8 @@ const getOperations = async (token) => {
         throw error;
     }
 
+    console.log(response)
+
     return response.data.response;
 
 }
