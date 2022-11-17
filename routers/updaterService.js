@@ -105,7 +105,7 @@ const logoutSession = async (token) => {
 
 const getOperations = async (token) => {
 
-    const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Updater/layouts/Anagrafiche_API/records';
+    const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Updater/layouts/Master_Operazioni_API/records';
     const options = {
         headers: {
             'Authorization': 'Bearer ' + token
@@ -119,8 +119,6 @@ const getOperations = async (token) => {
         console.log(error);
         throw error;
     }
-
-    console.log(response)
 
     return response.data.response;
 
@@ -138,10 +136,8 @@ router.get('/operations', cors(corsOption), async (req, res) => {
         return res.status(500).json(data);
     }
 
-    const anagrafiche = data.data;
-
-    console.log(data);
-    res.send(JSON.stringify(anagrafiche));
+    const operations = data.data;
+    res.send(JSON.stringify(operations));
 
     const [errorLogout, logout] = await waitFor(logoutSession(tokenFm));
 
