@@ -103,9 +103,9 @@ const logoutSession = async (token) => {
 
 }
 
-/*const getResources = async (token) => {
+const getOperations = async (token) => {
 
-    const basicUrl = 'https://serverondemand.sandeza.com/fmi/data/vLatest/databases/SEPROM/layouts/RIS_APIList/records';
+    const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Updater/layouts/Master_OperazioniServer_API/records';
     const options = {
         headers: {
             'Authorization': 'Bearer ' + token
@@ -122,7 +122,7 @@ const logoutSession = async (token) => {
 
     return response.data.response;
 
-}*/
+}
 
 
 // Quando viene fatta una chiamata con l'url 'http://localhost:3000/risorse' arriva la richiesta qua dentro e viene gestita
@@ -130,22 +130,25 @@ router.get('/updater', cors(corsOption), async (req, res) => {
 
     const [error, tokenFm] = await waitFor(getToken());
 
-    console.log(tokenFm);
+    const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Updater/layouts/Master_OperazioniServer_API/records';
+    const options = {
+        headers: {
+            'Authorization': 'Bearer ' + tokenFm
+        }
+    }
 
-    /*const [errorResources, data] = await waitFor(getResources(tokenFm));
+    const [errorOp, data] = await waitFor(getOperations(tokenFm));
 
-    if (errorResources) {
+    if (errorOp) {
         return res.status(500).json(data);
-    }*/
+    }
 
-    /*const resources = data.data;
+    const operations = data.data;
 
-    res.send(JSON.stringify(resources));*/
-
-    res.send(tokenFm);
+    console.log(operations);
+    res.send(JSON.stringify(operations));
 
     const [errorLogout, logout] = await waitFor(logoutSession(tokenFm));
-    console.log(logout);
 
 })
 
