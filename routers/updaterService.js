@@ -126,7 +126,7 @@ const getOperations = async (token) => {
 
 
 // Quando viene fatta una chiamata con l'url 'http://localhost:3000/risorse' arriva la richiesta qua dentro e viene gestita
-router.get('/updater', cors(corsOption), async (req, res) => {
+router.get('/operations', cors(corsOption), async (req, res) => {
 
     const [error, tokenFm] = await waitFor(getToken());
 
