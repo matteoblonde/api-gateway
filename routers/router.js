@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router()
 const feedService = require('./updaterService')
-const hashtagService = require('./hashtagService')
+const hashtagService = require('./operativeDocs')
 
 router.use((req, res, next) => {
     console.log("Called: ", req.path)
