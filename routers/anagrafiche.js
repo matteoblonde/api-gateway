@@ -4,8 +4,7 @@ const axios = require('axios');
 const cors = require('cors');
 const apiAdapter = require('./apiAdapter');
 
-const BASE_URL = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/OperativeDocs/sessions';
-const api = apiAdapter(BASE_URL);
+const BASE_URL = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Registries/sessions';
 
 // Imposto le cors
 const corsOption = {
@@ -56,7 +55,7 @@ async function waitFor(tester) {
 const getToken = async () => {
 
   // Costruisco l'url per accedere al database (PARAMETRIZZABILE CON LE ENV)
-  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/OperativeDocs/sessions'
+  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Registries/sessions'
 
   // Costruisco la basic auth per accedere al database (PARAMETRIZZABILE CON LE ENV)
   const basicAuth = btoa('UTENTEWEB:5U1U3RDH');
@@ -86,7 +85,7 @@ const getToken = async () => {
  */
 const logoutSession = async (token) => {
 
-  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/OperativeDocs/sessions/' + token;
+  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Registries/sessions/' + token;
   const options = {
 
   }
@@ -105,7 +104,7 @@ const logoutSession = async (token) => {
 
 const getOperations = async (token) => {
 
-  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/OperativeDocs/layouts/DocOperativiControllo/records';
+  const basicUrl = 'https://serverfm.sandeza.com/fmi/data/vLatest/databases/Registries/layouts/Anagrafica Controllo/records';
   const options = {
     headers: {
       'Authorization': 'Bearer ' + token
@@ -126,7 +125,7 @@ const getOperations = async (token) => {
 
 
 // Quando viene fatta una chiamata con l'url 'http://localhost:3000/risorse' arriva la richiesta qua dentro e viene gestita
-router.get('/operative-docs', cors(corsOption), async (req, res) => {
+router.get('/anagrafiche', cors(corsOption), async (req, res) => {
 
   const [error, tokenFm] = await waitFor(getToken());
 
